@@ -24,6 +24,7 @@ jobs:
           unzip -t /tmp/LimudTracker-source.zip
           mkdir -p .build-limud
           unzip -q /tmp/LimudTracker-source.zip -d .build-limud
+          sed -i 's/[[:space:]]*android:localeConfig="@null"//' .build-limud/LimudTracker/app/src/main/AndroidManifest.xml
       - name: Build APK
         working-directory: .build-limud/LimudTracker
         run: gradle --no-daemon :app:assembleDebug
