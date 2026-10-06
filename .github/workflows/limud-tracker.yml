@@ -19,7 +19,8 @@ jobs:
           gradle-version: '8.11.1'
       - name: Rebuild source archive
         run: |
-          cat limud-tracker/source.b64.* | tr -d '\n\r' | base64 -d > /tmp/LimudTracker-source.zip
+          cat limud-tracker/source.b64.000 limud-tracker/source.b64.001 limud-tracker/source.b64.01 limud-tracker/source.b64.02 limud-tracker/source.b64.03 limud-tracker/source.b64.04 | tr -d '\n\r' | base64 -d > /tmp/LimudTracker-source.zip
+          test "$(stat -c%s /tmp/LimudTracker-source.zip)" = "22086"
           unzip -t /tmp/LimudTracker-source.zip
           mkdir -p .build-limud
           unzip -q /tmp/LimudTracker-source.zip -d .build-limud
